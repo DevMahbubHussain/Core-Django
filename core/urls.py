@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 # from FirstApp import views
 # # from SylhetJobs import views
 # from SylhetJobs import views
@@ -24,5 +26,8 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('FirstApp/', include('FirstApp.urls',namespace='FirstApp')),
-     path('SylhetJobs/', include('SylhetJobs.urls',namespace='SylhetJobs'))
+    path('SylhetJobs/', include('SylhetJobs.urls',namespace='SylhetJobs'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
